@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: Digital Cash Vault
+
+jwt:
+  # secret: ${JWT_SECRET} tells Spring to look for an environment variable named JWT_SECRET
+  # secret is at least 256 bits (i.e., 32+ characters) if use HS256.
+  secret: "my_hardcoded_super_secret_key_in_dev"
