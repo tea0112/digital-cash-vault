@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserLoginRequestDTO {
-  private String username;
-  private String email;
-  private String password;
+public class RefreshTokenResponseDTO {
+  private String accessToken;
+  private Long accessTokenExpirationInMs;
+  private String refreshToken;
+  private Long refreshTokenExpirationInMs;
 }

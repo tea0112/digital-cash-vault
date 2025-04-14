@@ -15,8 +15,16 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Component
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class JwtService {
   @Value("${jwt.secret}")
   private String secretKeyString;
@@ -28,11 +36,21 @@ public class JwtService {
     this.secretKey = new SecretKeySpec(keyBytes, SignatureAlgorithm.HS256.getJcaName());
   }
 
-  public String generateToken(UserDetails userDetails, long expirationMs) {
+  public String generateAccessToken(UserDetails userDetails, long expirationMs) {
     return Jwts
         .builder()
         .setSubject(userDetails.getUsername())
         .claim("roles", userDetails.getAuthorities())
+        .setIssuedAt(new Date())
+        .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
+        .signWith(this.secretKey, SignatureAlgorithm.HS256)
+        .compact();
+  }
+
+  public String generateRefreshToken(UserDetails userDetails, long expirationMs) {
+    return Jwts
+        .builder()
+        .setSubject(userDetails.getUsername())
         .setIssuedAt(new Date())
         .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
         .signWith(this.secretKey, SignatureAlgorithm.HS256)
