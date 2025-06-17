@@ -2,15 +2,22 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"log"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "dcv",
 	Short: "Starting Digital Cash Vault Application",
-	Run: func(cmd *cobra.Command, args []string) {
-		log.Println("Starting Digital Cash Vault Application")
-	},
+	Run:   rootRunFunc,
+}
+
+var migrateCmd = &cobra.Command{
+	Use:   "migrate",
+	Short: "Migrate database to latest version",
+	Run:   migrateRunFunc,
+}
+
+func init() {
+	rootCmd.AddCommand(migrateCmd)
 }
 
 func Execute() {
