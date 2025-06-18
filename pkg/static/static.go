@@ -1,10 +1,14 @@
 package static
 
 const (
-	ENV_DRIVER = "DATABASE_DRIVER"
-	ENV_DSN    = "DATABASE_DSN"
+	EnvDcvDbDriver = "DCV_DB_DRIVER"
+	EnvDcvDbDsn    = "DCV_DB_DSN"
+	EnvDcvRouter   = "DCV_ROUTER"
 )
 
 const (
-	DATABASE_DRIVER_POSTGRES = "postgres"
+	DatabaseDriverPostgres  = "postgres"
+	DatabaseDriverMysql     = "mysql"
+	DatabaseDriverSqllite   = "sqlite"
+	DatabaseDriverSqlserver = "sqlserver"
 )
