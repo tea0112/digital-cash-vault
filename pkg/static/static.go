@@ -1,10 +1,30 @@
 package static
 
 const (
-	ENV_DRIVER = "DATABASE_DRIVER"
-	ENV_DSN    = "DATABASE_DSN"
+	EnvPrefix             = "DCV"
+	EnvAppPrefix          = EnvPrefix + "_APP_PREFIX"
+	EnvServiceEnvironment = EnvPrefix + "_ENV"
 )
 
 const (
-	DATABASE_DRIVER_POSTGRES = "postgres"
+	ServiceEnvironmentLocal = "local"
+)
+
+const (
+	EnvDbDriver   = EnvPrefix + "_DB_DRIVER"
+	EnvDbDsn      = EnvPrefix + "_DB_DSN"
+	EnvRouter     = EnvPrefix + "_ROUTER"
+	EnvServerPort = EnvPrefix + "_SERVER_PORT"
+	EnvJwtSecret  = EnvPrefix + "_JWT_SECRET"
+)
+
+const (
+	DatabaseDriverPostgres  = "postgres"
+	DatabaseDriverMysql     = "mysql"
+	DatabaseDriverSqlLite   = "sqlite"
+	DatabaseDriverSqlserver = "sqlserver"
+)
+
+const (
+	HandlerUser = "user"
 )
